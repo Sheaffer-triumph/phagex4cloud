@@ -16,10 +16,10 @@ TOOK_LONGEST = "/home/stereonote/script/took_longest.pl"
 PRODIGAL = "/home/stereonote/software/miniforge3/envs/amita/bin/prodigal"
 BLASTP = "/home/stereonote/software/miniforge3/envs/amita/bin/blastp"
 NR_PHAGE_DB = "/data/input/Files/ReferenceData/annotation_database/nr_phage.fasta"
-PHMMER = "/home/stereonote/software/miniforge3/envs/amita/bin/phmmer"
+PHMMER = "/home/stereonote/software/hmmer-3.4/bin/phmmer"
 UNIREF_DB = "/data/input/Files/ReferenceData/annotation_database/uniref_phage.fasta"
 UNIPROTKB_DB = "/data/input/Files/ReferenceData/annotation_database/uniprotkb_phage.fasta"
-HMMSCAN = "/home/stereonote/software/miniforge3/envs/amita/bin/hmmscan"
+HMMSCAN = "/home/stereonote/software/hmmer-3.4/bin/hmmscan"
 PFAM_PATH = "/data/input/Files/ReferenceData/annotation_database/Pfam-A.hmm"
 HMMER_UNIQ = "/home/stereonote/script/hmmer_hit_uniq.py"
 GET_RESULT_PY = "/home/stereonote/script/get_result.py"
@@ -194,7 +194,7 @@ else:
             f.write(f"grep '#' -v 08_phmmer/uniprotkb.tblout.txt > 08_phmmer/uniprotkb.tblout.txt.hit")
         #09_hmmscan
         with open(os.path.join(outpath, phageID, "r9_hmmscan.sh"), "w") as f:
-            f.write("mdkir -p 09_hmmscan\n")
+            f.write("mkdir -p 09_hmmscan\n")
             f.write(f"{HMMSCAN} -E 1e-5 -o 09_hmmscan/pfam.output.txt --tblout 09_hmmscan/pfam.tblout.txt {PFAM_PATH} 06_prodigal/{phageID}_genome.proteins.faa\n")
             f.write(f"grep '#' -v 09_hmmscan/pfam.tblout.txt > 09_hmmscan/pfam.tblout.txt.hit\n")
         #10_result
