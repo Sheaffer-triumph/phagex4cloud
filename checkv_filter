@@ -1,3 +1,6 @@
 #!/usr/bin/bash
 
-grep -v "no viral genes detected" $2 |  awk -v a="$1" '$10 >= a' | grep -v "contig_id" | awk '{print $1}'
+grep -v "no viral genes detected" $2 |  awk -v a="$1" '$10 >= a' | grep -v "contig_id" | awk '{print $1}' | while read ID
+do
+    /home/stereonote/software/miniforge3/envs/checkv/bin/seqkit grep -p "${ID}" $3 >> $4
+done
